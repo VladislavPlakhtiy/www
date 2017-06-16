@@ -1,0 +1,46 @@
+﻿@using TestGit.Controllers
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<h2>Простой калькулятор</h2>
+<br />
+
+<input id="first" type="text" value="11" /> 
+<select id="act">
+    <option value="@((int)Selection.None)"></option>
+    <option value="@((int)Selection.Sum)">+</option>
+    <option value="@((int)Selection.Sub)">-</option>
+    <option value="@((int)Selection.Mult)">*</option>
+    <option value="@((int)Selection.Div)">/</option>
+</select>
+<input id="second" type="text" value="22" />
+<br/>
+<button id="post">Посчитать</button>
+<br />
+<div id="divRes">
+    @Html.Partial("Result")
+</div>
+<script>
+    $(document).ready(function () {
+        $("#post")
+            .click(function() {
+                var data = {
+                    firstVelue: $("#first").val(),
+                    secondVelue: $("#second").val(),
+                    action: $('#act option:selected').val()
+                    
+                };
+                //debugger;
+                    $.ajax({
+                        url: "Home/Index", //забыл как правильно вписывать URL.. это очень топорно :)
+                        type: "POST",
+                        data: data,
+                        success: function (data) {
+                            $("#divRes").html(data);
+                        }
+                    });
+            });
+    })
+</script>
+
+
