@@ -5,7 +5,7 @@
 <h2>Простой калькулятор</h2>
 <br />
 
-<input id="first" type="text" value="11" /> 
+<input id="first" type="text" /> 
 <select id="act">
     <option value="@((int)Selection.None)"></option>
     <option value="@((int)Selection.Sum)">+</option>
@@ -13,7 +13,7 @@
     <option value="@((int)Selection.Mult)">*</option>
     <option value="@((int)Selection.Div)">/</option>
 </select>
-<input id="second" type="text" value="22" />
+<input id="second" type="text" />
 <br/>
 <button id="post">Посчитать</button>
 <br />
@@ -32,13 +32,13 @@
                 };
                 //debugger;
                     $.ajax({
-                        url: "Home/Index", //забыл как правильно вписывать URL.. это очень топорно :)
-                        type: "POST",
-                        data: data,
-                        success: function (data) {
+                        url:"Home/Index", //забыл как правильно вписывать URL.. это очень топорно :)
+                            type: "POST",
+                            data: data,
+                            success: function (data) {
                             $("#divRes").html(data);
-                        }
-                    });
+                            }
+                        });
             });
     })
 </script>
